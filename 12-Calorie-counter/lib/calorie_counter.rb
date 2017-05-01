@@ -17,5 +17,13 @@ MEALS = {
 
 def calorie_counter(order)
   # TODO: calculate the total amount of calories for the order
-
+  total_calories = 0
+  order.each do |item|
+    if CALORIES.has_key?(item)
+      total_calories += CALORIES[item]
+    elsif MEALS.has_key?(item)
+      total_calories += (CALORIES[MEALS[item][0]] + CALORIES[MEALS[item][1]] + CALORIES[MEALS[item][2]])
+    end
+  end
+  return total_calories
 end
